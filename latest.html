@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latest Savings - B&amp;M Deal Finder</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="banner">
+    <div class="banner-top">
+      <div class="brand-row">
+        <div class="logo-slot">LOGO</div>
+        <div>
+          <h1>B&amp;M Deal Finder</h1>
+          <div class="tagline">Live prices, pulled straight from the source.</div>
+        </div>
+      </div>
+      <div class="updated-chip">Updated 30 Aug 2026, 22:32</div>
+    </div>
+  </div>
+
+  <div class="navbar"><a class="nav-btn" href="index.html">Home</a><a class="nav-btn" href="under1.html">Under &pound;1</a><a class="nav-btn" href="pct-off.html">Biggest % Off</a><a class="nav-btn" href="savings.html">Biggest &pound; Savings</a><a class="nav-btn active" href="latest.html">Latest Savings</a><a class="nav-btn" href="search.html">Search</a></div>
+
+  <div class="panel">
+    <div class="panel-head"><h2>Latest Savings</h2></div>
+    <div class="panel-body">
+      <p class="page-intro">New arrivals that are already on sale.</p>
+      <div class="controls">
+        
+        <select class="xp-select" id="categorySelect">
+          <option value="">All categories</option>
+        </select>
+        <div class="filter-group">
+          <label>Price</label>
+          <input type="number" class="num-input" id="minPrice" placeholder="Min £" min="0" step="0.01">
+          <span>&ndash;</span>
+          <input type="number" class="num-input" id="maxPrice" placeholder="Max £" min="0" step="0.01">
+        </div>
+        <div class="filter-group">
+          <label>% Off</label>
+          <input type="number" class="num-input" id="minPct" placeholder="Min %" min="0" max="100" step="1">
+          <span>&ndash;</span>
+          <input type="number" class="num-input" id="maxPct" placeholder="Max %" min="0" max="100" step="1">
+        </div>
+        <button class="reset-btn" id="resetFiltersBtn">Reset filters</button>
+      </div>
+      <p class="result-count" id="resultCount"></p>
+      <div class="grid" id="grid"></div>
+      <div class="pagination">
+        <button class="pg-btn" id="prevBtn">&larr; Prev</button>
+        <span id="pageIndicator">Page 1</span>
+        <button class="pg-btn" id="nextBtn">Next &rarr;</button>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+  <script>
+    var PRODUCTS = [{"title": "Ninja CRISPi 4-in-1 Portable Air Fryer", "brand": null, "category": null, "type": "Events", "code": "440062", "url": "https://www.bmstores.co.uk/products/ninja-crispi-4-in-1-portable-air-fryer-440062", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/440062-ninja-crispi-4-in-1-portable-air-fryer-stone-6.jpg", "sell": 129.0, "last": 0.0, "rrp": 149.99, "stockMsg": null, "published": "20 August 2026", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "was": 149.99, "discountPct": 14.0, "savingsAbs": 20.99}, {"title": "Ninja Air Fryer 4.7L", "brand": null, "category": null, "type": "Events", "code": "441275", "url": "https://www.bmstores.co.uk/products/ninja-air-fryer-4-7l-441275", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/441275-ninja-air-fryer-4_7l-black-5.jpg", "sell": 79.0, "last": 0.0, "rrp": 99.99, "stockMsg": null, "published": "20 August 2026", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "was": 99.99, "discountPct": 21.0, "savingsAbs": 20.99}, {"title": "Lynx Sunset Bodywash & Socks Gift Set", "brand": "Lynx", "category": null, "type": "A/W Seasonal", "code": "439134", "url": "https://www.bmstores.co.uk/products/lynx-sunset-bodywash-and-socks-gift-set-439134", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/439134-lynx-sunset-socks-set.jpg", "sell": 2.99, "last": 0.0, "rrp": 6.0, "stockMsg": "Hurry Low Stock", "published": "16 August 2026", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "was": 6.0, "discountPct": 50.2, "savingsAbs": 3.01}, {"title": "Leopard Print Bow Duvet Set - Double", "brand": null, "category": "Home & Furniture", "type": "Trial", "code": "437349", "url": "https://www.bmstores.co.uk/products/leopard-print-bow-duvet-set-double-437349", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/-leopard-bow-duvet-set-double-king.jpg", "sell": 10.0, "last": 15.0, "rrp": 0.0, "stockMsg": null, "published": "11 August 2026", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "was": 15.0, "discountPct": 33.3, "savingsAbs": 5.0}, {"title": "Russell Hobbs 2 Portion Sandwich Maker", "brand": "Russell Hobbs", "category": null, "type": "Events", "code": "435710", "url": "https://www.bmstores.co.uk/products/russell-hobbs-2-portion-sandwich-maker-435710", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/435710-russell-hobbs-2-portion-black-sandwich-maker-6.jpg", "sell": 15.0, "last": 23.0, "rrp": 0.0, "stockMsg": null, "published": "11 August 2026", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "was": 23.0, "discountPct": 34.8, "savingsAbs": 8.0}, {"title": "Alix 2 Tone Swivel Chair - Beige", "brand": null, "category": "Home & Furniture", "type": "Trial", "code": "437518", "url": "https://www.bmstores.co.uk/products/alix-2-tone-swivel-chair-beige-437518", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/437518-alix-swivel-chair-2.jpg", "sell": 70.0, "last": 120.0, "rrp": 0.0, "stockMsg": null, "published": "3 August 2026", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "was": 120.0, "discountPct": 41.7, "savingsAbs": 50.0}, {"title": "Zurich Marble Effect Dining Table Set 5pcs", "brand": null, "category": "Home & Furniture", "type": "Core", "code": "437466", "url": "https://www.bmstores.co.uk/products/zurich-marble-effect-dining-table-set-5pcs-437466", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/437466-zurich-5-piece-black-marble-dining-table-set-2.jpg", "sell": 165.0, "last": 180.0, "rrp": 0.0, "stockMsg": null, "published": "2 August 2026", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "was": 180.0, "discountPct": 8.3, "savingsAbs": 15.0}, {"title": "Tufted Memory Foam Bath Mat", "brand": null, "category": "Home & Furniture", "type": null, "code": "435032", "url": "https://www.bmstores.co.uk/products/tufted-memory-foam-bath-mat-435032", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/435032-tufted-memory-foam-bath-mat.jpg", "sell": 5.0, "last": 8.0, "rrp": 0.0, "stockMsg": null, "published": "23 July 2026", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "was": 8.0, "discountPct": 37.5, "savingsAbs": 3.0}, {"title": "Tower Digital Air Fryer 5L", "brand": "Tower", "category": null, "type": "Events", "code": "433324", "url": "https://www.bmstores.co.uk/products/tower-digital-air-fryer-5l-433324", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/433324-tower-5l-digital-air-fryer.jpg", "sell": 29.0, "last": 49.0, "rrp": 0.0, "stockMsg": null, "published": "16 July 2026", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "was": 49.0, "discountPct": 40.8, "savingsAbs": 20.0}];
+    initCatalog(PRODUCTS);
+  </script>
+
+  <footer class="foot">11889 products &middot; not affiliated with B&amp;M</footer>
+
+</div>
+
+</body>
+</html>
