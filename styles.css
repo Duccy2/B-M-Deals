@@ -256,13 +256,24 @@ body {
   justify-content: center;
   overflow: hidden;
   margin-bottom: 8px;
+  position: relative;
 }
 .card img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
+.roundel-icon {
+  position: absolute;
+  top: 4px; left: 4px;
+  max-width: 46px !important;
+  max-height: 46px !important;
+  width: auto;
+  height: auto;
+  z-index: 3;
+}
+
 .starburst {
   position: absolute;
-  top: -10px; right: -10px;
-  width: 54px; height: 54px;
+  top: -12px; right: -12px;
+  width: 68px; height: 68px;
   background: var(--star-red);
   border: 2px solid var(--ink);
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
@@ -272,8 +283,8 @@ body {
   justify-content: center;
   text-align: center;
   font-weight: bold;
-  font-size: 10px;
-  line-height: 1.05;
+  font-size: 12.5px;
+  line-height: 1.15;
   transform: rotate(8deg);
   z-index: 2;
 }
@@ -292,6 +303,7 @@ body {
 .flag-badge.special { background: var(--purple); color: #fff; }
 .flag-badge.blackfriday { background: var(--ink); color: var(--yellow); }
 .flag-badge.sale { background: var(--star-red); color: #fff; }
+.flag-badge.promo { background: var(--orange); color: var(--ink); }
 
 .ctitle {
   font-size: 12.5px;

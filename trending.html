@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trending - B&amp;M Deal Finder</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="banner">
+    <div class="banner-top">
+      <div class="brand-row">
+       <div>
+		  <h1>B&amp;M Deal Finder</h1>
+          <div class="tagline">Live prices, pulled straight from the source.</div>
+          <div style="color:red" class="tagline">Coming soon: Stock status</div>
+        </div>
+      </div>
+      <div class="updated-chip">Updated 03 Sep 2026, 12:19</div>
+    </div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">★ WELCOME TO B&amp;M DEAL FINDER ★ PRICES PULLED STRAIGHT FROM THE SOURCE ★ BOOKMARK THIS PAGE ★ REFRESHED EVERY DAY ~ISH~ ★ HAPPY BARGAIN HUNTING ★</div>
+  </div>
+
+  <div class="navbar"><a class="nav-btn" href="index.html">Home</a><a class="nav-btn" href="under1.html">Under &pound;1</a><a class="nav-btn" href="pct-off.html">Biggest % Off</a><a class="nav-btn" href="savings.html">Biggest &pound; Savings</a><a class="nav-btn" href="latest.html">Latest Savings</a><a class="nav-btn active" href="trending.html">Trending</a><a class="nav-btn" href="search.html">Search</a></div>
+
+  <div class="panel">
+    <div class="panel-head"><h2>Trending</h2></div>
+    <div class="panel-body">
+      <p class="page-intro">Products B&amp;M's own site is currently featuring as trending.</p>
+      <div class="controls">
+        
+        <select class="xp-select" id="categorySelect">
+          <option value="">All categories</option>
+        </select>
+        <div class="filter-group">
+          <label>Price</label>
+          <input type="number" class="num-input" id="minPrice" placeholder="Min £" min="0" step="0.01">
+          <span>&ndash;</span>
+          <input type="number" class="num-input" id="maxPrice" placeholder="Max £" min="0" step="0.01">
+        </div>
+        <div class="filter-group">
+          <label>% Off</label>
+          <input type="number" class="num-input" id="minPct" placeholder="Min %" min="0" max="100" step="1">
+          <span>&ndash;</span>
+          <input type="number" class="num-input" id="maxPct" placeholder="Max %" min="0" max="100" step="1">
+        </div>
+        <button class="reset-btn" id="resetFiltersBtn">Reset filters</button>
+      </div>
+      <p class="result-count" id="resultCount"></p>
+      <div class="grid" id="grid"></div>
+      <div class="pagination">
+        <button class="pg-btn" id="prevBtn">&larr; Prev</button>
+        <span id="pageIndicator">Page 1</span>
+        <button class="pg-btn" id="nextBtn">Next &rarr;</button>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+  <script>
+    var PRODUCTS = [{"title": "Home Essentials Multi Purpose 12 Compartment Storage Box", "brand": null, "category": "Home & Furniture", "type": "Core", "code": "406910", "url": "https://www.bmstores.co.uk/products/home-essentials-multi-purpose-12-compartment-storage-box-406910", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/406910-multi-purpose-12-compartment-box-clear-2.jpg", "sell": 4.0, "last": 0.0, "rrp": 0.0, "stockMsg": null, "flashLabel": "New", "roundel": "https://cdn.bmstores.co.uk/images/hpcProductFeature/flashImage/product-tag-new1.png", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": null}, {"title": "Restore Bow LED Vanity Mirror", "brand": null, "category": "Home & Furniture", "type": "A/W Seasonal", "code": "437211", "url": "https://www.bmstores.co.uk/products/restore-bow-led-vanity-mirror-437211", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/437211-restore-bow-mirror.jpg", "sell": 12.99, "last": 0.0, "rrp": 0.0, "stockMsg": null, "flashLabel": "Multibuy", "roundel": "https://cdn.bmstores.co.uk/images/hpcProductFeature/flashImage/product-tag-multibuy1.png", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": "ANY 2 FOR £20"}, {"title": "4 Cube Shelving Unit - Black & Gold", "brand": null, "category": "Home & Furniture", "type": "Core", "code": "436194", "url": "https://www.bmstores.co.uk/products/4-cube-shelving-unit-black-and-gold-436194", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/436194-black-4-cube-with-gold-feet.jpg", "sell": 20.0, "last": 0.0, "rrp": 0.0, "stockMsg": null, "flashLabel": "New", "roundel": "https://cdn.bmstores.co.uk/images/hpcProductFeature/flashImage/product-tag-new1.png", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": null}, {"title": "Garment Rail with 2 Shelves - Beige", "brand": "Spaceways", "category": "Home & Furniture", "type": "Trial", "code": "436243", "url": "https://www.bmstores.co.uk/products/garment-rail-with-2-shelves-beige-436243", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/436243-garment-rail-with-2-shelves.jpg", "sell": 30.0, "last": 0.0, "rrp": 0.0, "stockMsg": null, "flashLabel": "New", "roundel": "https://cdn.bmstores.co.uk/images/hpcProductFeature/flashImage/product-tag-new1.png", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": null}, {"title": "Harvest Leaf Brushed Cotton Duvet Set - Double", "brand": null, "category": "Home & Furniture", "type": "A/W Seasonal", "code": "435601", "url": "https://www.bmstores.co.uk/products/harvest-leaf-brushed-cotton-duvet-set-double-435601", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/435601-435602-harvest-leaf-brushed-cotton-duvet-set-double-king.jpg", "sell": 18.0, "last": 0.0, "rrp": 0.0, "stockMsg": "Hurry Low Stock", "flashLabel": "New", "roundel": "https://cdn.bmstores.co.uk/images/hpcProductFeature/flashImage/product-tag-new1.png", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": null}, {"title": "Wave Lid Teddy Ottoman - Brown", "brand": null, "category": "Home & Furniture", "type": "Promotion", "code": "435192", "url": "https://www.bmstores.co.uk/products/wave-lid-teddy-ottoman-brown-435192", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/435192-wave-lid-ottoman-brown-2.jpg", "sell": 15.0, "last": 0.0, "rrp": 0.0, "stockMsg": "Hurry Low Stock", "flashLabel": "Special Buy", "roundel": "https://cdn.bmstores.co.uk/images/hpcProductFeature/flashImage/2023-07-06-special-buy-sticker-roundel-aw-160x160pix2.png", "sale": false, "newArrival": false, "specialBuy": true, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": null}, {"title": "Ania Glass Ball Lamp", "brand": null, "category": "Home & Furniture", "type": "A/W Seasonal", "code": "430248", "url": "https://www.bmstores.co.uk/products/ania-glass-ball-lamp-430248", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/430248-ania-glass-ball-lamp.jpg", "sell": 18.0, "last": 0.0, "rrp": 0.0, "stockMsg": null, "flashLabel": null, "roundel": "", "sale": false, "newArrival": false, "specialBuy": false, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": null}, {"title": "Sol Large Tin Scented Candle - Bergamot, Jasmine & Musk", "brand": null, "category": "Home & Furniture", "type": "A/W Seasonal", "code": "430128", "url": "https://www.bmstores.co.uk/products/sol-large-tin-scented-candle-bergamot-jasmine-and-musk-430128", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/430128-large-sol-candle-blue.jpg", "sell": 5.0, "last": 0.0, "rrp": 0.0, "stockMsg": null, "flashLabel": null, "roundel": "", "sale": false, "newArrival": false, "specialBuy": false, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": null}, {"title": "Bubble Faux Fur Cushion - Cream", "brand": null, "category": "Home & Furniture", "type": "Core", "code": "425303", "url": "https://www.bmstores.co.uk/products/bubble-faux-fur-cushion-cream-425303", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/425303-bubble-faux-fur-cushion.jpg", "sell": 10.0, "last": 0.0, "rrp": 0.0, "stockMsg": null, "flashLabel": null, "roundel": "", "sale": false, "newArrival": false, "specialBuy": false, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": null}, {"title": "Fridge Storage Container With Clip Lock Lid - Small", "brand": null, "category": "Home & Furniture", "type": null, "code": "405644", "url": "https://www.bmstores.co.uk/products/fridge-storage-container-with-clip-lock-lid-small-405644", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/405644-fridge-container.jpg", "sell": 2.5, "last": 0.0, "rrp": 0.0, "stockMsg": "Hurry Low Stock", "flashLabel": null, "roundel": "", "sale": false, "newArrival": false, "specialBuy": false, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": null}, {"title": "Ninja CRISPi 4-in-1 Portable Air Fryer", "brand": null, "category": "Electrical", "type": "Events", "code": "440062", "url": "https://www.bmstores.co.uk/products/ninja-crispi-4-in-1-portable-air-fryer-440062", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/440062-ninja-crispi-4-in-1-portable-air-fryer-stone-6.jpg", "sell": 129.0, "last": 0.0, "rrp": 149.99, "stockMsg": null, "flashLabel": "New", "roundel": "https://cdn.bmstores.co.uk/images/hpcProductFeature/flashImage/product-tag-new1.png", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": null}, {"title": "Gothic Pre-Lit Half Wreath 55cm", "brand": null, "category": "Halloween", "type": "A/W Seasonal", "code": "435825", "url": "https://www.bmstores.co.uk/products/gothic-pre-lit-half-wreath-55cm-435825", "image": "https://cdn.bmstores.co.uk/images/hpcProductImage/imgTeaserBox/435825-55cm-pre-lit-half-wreath.jpg", "sell": 18.0, "last": 0.0, "rrp": 0.0, "stockMsg": null, "flashLabel": "New", "roundel": "https://cdn.bmstores.co.uk/images/hpcProductFeature/flashImage/product-tag-new1.png", "sale": false, "newArrival": true, "specialBuy": false, "blackFriday": false, "topTrending": true, "was": 0.0, "discountPct": null, "savingsAbs": null, "saleFlag": false, "promoLabel": null}];
+    initCatalog(PRODUCTS, { starburstMode: "pct" });
+  </script>
+
+  <footer class="foot">Tracking <span class="hit-counter">011730</span> products right now &middot; not affiliated with B&amp;M</footer>
+
+</div>
+
+</body>
+</html>

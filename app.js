@@ -5,18 +5,26 @@ function escapeHtml(str) {
 }
 function escapeAttr(str) { return escapeHtml(str); }
 
-function cardHtml(p) {
+function cardHtml(p, opts) {
+  opts = opts || {};
   var img = p.image
     ? '<img src="' + escapeAttr(p.image) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">'
     : '';
-  var starburst = p.discountPct
-    ? '<div class="starburst">' + p.discountPct.toFixed(0) + '%<br>OFF</div>'
+  var starburst = '';
+  if (opts.starburstMode === 'abs' && p.savingsAbs) {
+    starburst = '<div class="starburst">£' + p.savingsAbs.toFixed(2) + '<br>OFF</div>';
+  } else if (opts.starburstMode !== 'abs' && p.discountPct) {
+    starburst = '<div class="starburst">' + p.discountPct.toFixed(0) + '%<br>OFF</div>';
+  }
+  var roundel = p.roundel
+    ? '<img class="roundel-icon" src="' + escapeAttr(p.roundel) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">'
     : '';
   var badges = [
     p.newArrival ? '<span class="flag-badge new">NEW</span>' : '',
     p.specialBuy ? '<span class="flag-badge special">SPECIAL BUY</span>' : '',
     p.blackFriday ? '<span class="flag-badge blackfriday">BLACK FRIDAY</span>' : '',
-    p.sale ? '<span class="flag-badge sale">SALE</span>' : '',
+    p.saleFlag ? '<span class="flag-badge sale">SALE</span>' : '',
+    p.promoLabel ? '<span class="flag-badge promo">' + escapeHtml(p.promoLabel) + '</span>' : '',
   ].join('');
   var priceHtml = (p.was && p.discountPct)
     ? '<span class="now">£' + p.sell.toFixed(2) + '</span><span class="was">£' + p.was.toFixed(2) + '</span>'
@@ -28,7 +36,7 @@ function cardHtml(p) {
   return '' +
     '<div class="card">' +
       starburst +
-      '<div class="thumb-wrap">' + img + '</div>' +
+      '<div class="thumb-wrap">' + img + roundel + '</div>' +
       '<div class="badges">' + badges + '</div>' +
       '<div class="ctitle">' + escapeHtml(p.title || '') + '</div>' +
       '<div class="cbrand">' + escapeHtml(p.brand || '') + '</div>' +
@@ -140,7 +148,7 @@ function initCatalog(products, opts) {
     var start = (page - 1) * PAGE_SIZE;
     var items = VIEW.slice(start, start + PAGE_SIZE);
     grid.innerHTML = items.length
-      ? items.map(cardHtml).join('')
+      ? items.map(function (p) { return cardHtml(p, opts); }).join('')
       : '<div class="empty-state">No products match.</div>';
     var maxPage = Math.max(1, Math.ceil(VIEW.length / PAGE_SIZE));
     if (pageIndicator) pageIndicator.textContent = 'Page ' + page + ' of ' + maxPage;
